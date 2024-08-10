@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ReactModal from "react-modal";
 import { CloseLogo } from "../assets/CloseLogo";
 import { FullScreenLogo } from "../assets/FullScreenLogo";
@@ -22,7 +22,11 @@ const PerformanceGraph = ({ query }: { query: string }) => {
   const { data, isLoading } = useGetHistoricDataByTicker(query);
   const { data: stats } = useGetStatsByTicker(query);
 
-  const chartData = transformChartData(data?.prices || [], selectedDate);
+  // cache the result based on selectedDate, since these calculations can become little heavy since we are dealing with large datasets
+  const chartData = useMemo(
+    () => transformChartData(data?.prices || [], selectedDate),
+    [query, selectedDate, data?.prices]
+  );
 
   const latestPrice = getLatestPrice(data?.prices || []);
 
