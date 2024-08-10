@@ -3,6 +3,8 @@ import axios from "../../node_modules/axios/index";
 import { StatsTypes } from "../types";
 
 export const useGetStatsByTicker = (ticker: string) => {
+  // always use try, catch block to make sure the code wont break when there is any error and add appropriate console.
+  // or in actual products we can use sentry to capture error messages for better debugging.
   const fetchStats = async () => {
     try {
       const { data } = await axios.get(

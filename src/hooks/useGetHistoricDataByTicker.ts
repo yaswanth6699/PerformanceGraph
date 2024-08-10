@@ -3,6 +3,8 @@ import axios from "axios";
 import { ChartType } from "../types";
 
 export const useGetHistoricDataByTicker = (ticker: string) => {
+  // always use try, catch block to make sure the code wont break when there is any error and add appropriate console.
+  // or in actual products we can use sentry to capture error messages for better debugging.
   const fetchHistoricData = async () => {
     try {
       const nowTime = Math.floor(new Date().getTime() / 1000);

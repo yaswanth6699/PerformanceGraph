@@ -18,7 +18,7 @@ const Summary = ({ ticker }: { ticker: string }) => {
       <img src={data?.logo} />
       <div className="row">
         {getTickerSummary()?.map((d) => (
-          <h3>
+          <h3 key={d.key}>
             {d.label}: <b>{data?.[d.key as keyof StatsTypes]}</b>
           </h3>
         ))}

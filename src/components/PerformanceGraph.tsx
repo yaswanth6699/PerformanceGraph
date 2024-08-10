@@ -18,8 +18,8 @@ const PerformanceGraph = ({ query }: { query: string }) => {
   const handleClick = (tab: Tabs) => {
     toggleSelectedTab(tab);
   };
+  // use custom hooks to make code more readable and easy to maintain and easy to debug
   const { data, isLoading } = useGetHistoricDataByTicker(query);
-
   const { data: stats } = useGetStatsByTicker(query);
 
   const chartData = transformChartData(data?.prices || [], selectedDate);
@@ -81,6 +81,7 @@ const PerformanceGraph = ({ query }: { query: string }) => {
             <div className="datePicker">
               {DATE_FORMATS.map((d) => (
                 <p
+                  key={d.name}
                   className={`${
                     selectedDate === d.name ? "selectedDate" : ""
                   } date`}

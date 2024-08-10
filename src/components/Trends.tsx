@@ -12,6 +12,7 @@ import { useGetTickerTrends } from "../hooks/useGetTickerTrends";
 import Placeholder from "./Placeholder";
 
 const Trends = ({ ticker }: { ticker: string }) => {
+  // use custom hooks to make code more readable and easy to maintain and easy to debug.
   const { data, isLoading } = useGetTickerTrends(ticker);
 
   if (isLoading)
